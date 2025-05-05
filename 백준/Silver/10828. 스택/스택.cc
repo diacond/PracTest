@@ -1,60 +1,41 @@
 #include <iostream>
 #include <stack>
+#include <string>
 using namespace std;
 
 int main(){
-    stack<int> s;
+    int N, num;
+    cin >> N;
+    stack<int> st;
+    for(int i = 0; i< N; i++){
+        string inst;
+        cin >> inst;
 
-    int N, n, result;
-    cin >> N; // 명령어 개수 정하기
-    string command;
-
-    for(int i = 0; i<N; i++){
-        // 명령어 개수만큼 반복 돌면서 명령어 수행!
-        cin >> command;
-
-        //push
-        if(command == "push"){
-            cin >> n;
-            s.push(n);
+        if(inst == "push"){
+            cin >> num;
+            st.push(num);
         }
-        //pop
-        else if(command == "pop"){
-            if(s.size() == 0){
-                result = -1;
-                cout << result << endl;
-            }
-            else{
-                result = s.top();
-                cout << result << endl;
-                s.pop();
-            }
-        }
-        //size
-        else if(command == "size"){
-            cout << s.size() << endl;
-        }
-
-        //empty
-        else if(command == "empty"){
-            if(s.size() == 0){
-                result = 1;
-                cout << result << endl;
-            }
-            else{
-                result = 0;
-                cout << result << endl;
-            }
-        }
-        else if(command == "top"){
-            if(s.size() == 0){
-                result =0;
+        else if(inst == "pop"){
+            if(st.empty()){
                 cout << -1 << endl;
             }
             else{
-                result = s.top();
-                cout << result << endl;
+                cout << st.top() << endl;
+                st.pop();
+            }    
+        }
+        else if(inst == "size"){
+            cout << st.size() << endl;
+        }
+        else if(inst == "empty"){
+            if(st.empty()){
+                cout << 1 << endl;
             }
+            else cout << 0 << endl;
+        }
+        else if(inst == "top"){
+            if(st.empty()) cout << -1 << endl;
+            else cout << st.top() << endl;
         }
     }
     return 0;
